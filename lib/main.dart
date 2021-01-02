@@ -33,12 +33,13 @@ class _MyappState extends State<Myapp> {
       "Around 15 KM",
       "Around 20 KM",
     ];
+    // ignore: unused_local_variable
     String _selectedLocation;
 
     return Scaffold(
       backgroundColor: Color(0xfff4f4f4),
       appBar: AppBar(
-        backgroundColor: Color(0xfff4f4f4),
+        backgroundColor: Colors.white,
         title: Text(
           "Alibay",
           style: TextStyle(
@@ -118,9 +119,9 @@ class _MyappState extends State<Myapp> {
                         ),
                         Container(
                           width: width * 0.85,
+                          height: 50,
                           padding: EdgeInsets.all(7),
                           decoration: BoxDecoration(
-                              color: Colors.yellow,
                               border: Border.all(color: Colors.black26),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10))),
@@ -129,10 +130,16 @@ class _MyappState extends State<Myapp> {
                               Icon(
                                 Icons.location_on,
                                 size: 18,
+                                color: Color(0xff6d6d6d),
                               ),
                               DropdownButton(
+                                  iconEnabledColor: Colors.black,
+                                  elevation: 10,
                                   iconSize: 30,
-                                  hint: Text("Select One"),
+                                  hint: Text(
+                                    "          Select One           ",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
                                   onChanged: (newValue) {
                                     setState(() {
                                       _selectedLocation = newValue;
@@ -143,10 +150,45 @@ class _MyappState extends State<Myapp> {
                                       child: Text(locations),
                                       value: locations,
                                     );
-                                  }).toList())
+                                  }).toList()),
                             ],
                           ),
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                             padding: EdgeInsets.only(left:10,right: 10),
+                              child: Container(
+                                 padding: EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.blue,
+                                        blurRadius: 2.0,
+                                        offset: Offset(00, 2),
+                                      )
+                                    ],
+                                    border: Border.all(color: Colors.white10),
+                                    shape: BoxShape.circle,
+                                    color: Colors.white),
+                                child: Icon(
+                                  Icons.home,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              "Categories",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   )));
