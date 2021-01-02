@@ -115,12 +115,15 @@ class _MyappState extends State<Myapp> {
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
                         Container(
                           width: width * 0.85,
-                          height: 50,
-                          padding: EdgeInsets.all(7),
+                          height: 40,
+                          padding: EdgeInsets.only(
+                            left: 6,
+                            right: 6,
+                          ),
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black26),
                               borderRadius:
@@ -133,6 +136,7 @@ class _MyappState extends State<Myapp> {
                                 color: Color(0xff6d6d6d),
                               ),
                               DropdownButton(
+                                  underline: Container(),
                                   iconEnabledColor: Colors.black,
                                   elevation: 10,
                                   iconSize: 30,
@@ -155,14 +159,14 @@ class _MyappState extends State<Myapp> {
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
                         Row(
                           children: [
                             Container(
-                             padding: EdgeInsets.only(left:10,right: 10),
+                              padding: EdgeInsets.only(left: 15, right: 10),
                               child: Container(
-                                 padding: EdgeInsets.all(3),
+                                padding: EdgeInsets.all(3),
                                 decoration: BoxDecoration(
                                     boxShadow: [
                                       BoxShadow(
@@ -187,6 +191,35 @@ class _MyappState extends State<Myapp> {
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold),
                             ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.blue),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Image.asset(
+                                      "assets/a.png",
+                                      width: 50,
+                                      height: 50,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Apartment",
+                                    style: TextStyle(color: Colors.blue),
+                                  ),
+                                ],
+                              ),
+                            )
                           ],
                         )
                       ],
