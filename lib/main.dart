@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_segmented_control/material_segmented_control.dart';
+import 'package:circular_check_box/circular_check_box.dart';
 
 void main(List<String> args) {
   runApp(MaterialApp(
@@ -19,7 +20,10 @@ class Myapp extends StatefulWidget {
 class _MyappState extends State<Myapp> {
   int _currentSelection = 0;
   int _currentSelection1 = 0;
-
+  bool selected = false;
+  bool selected1 = true;
+  bool selected2 = false;
+  bool selected3 = false;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -115,7 +119,7 @@ class _MyappState extends State<Myapp> {
                           ),
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 12,
                         ),
                         Container(
                           width: width * 0.85,
@@ -159,7 +163,7 @@ class _MyappState extends State<Myapp> {
                           ),
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 12,
                         ),
                         Row(
                           children: [
@@ -194,33 +198,305 @@ class _MyappState extends State<Myapp> {
                           ],
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 12,
+                        ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.blue),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.asset(
+                                        "assets/2.png",
+                                        width: 50,
+                                        height: 50,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Apartment",
+                                      style: TextStyle(color: Colors.blue),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.blue),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.asset("assets/3.jpeg",
+                                          fit: BoxFit.scaleDown),
+                                    ),
+                                    Text(
+                                      "Land",
+                                      style: TextStyle(color: Colors.black54),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.blue),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.asset(
+                                        "assets/4.jpg",
+                                        width: 50,
+                                        height: 50,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Renthouse",
+                                      style:
+                                          TextStyle(color: Colors.blueAccent),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.blue),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.asset(
+                                        "assets/5.png",
+                                        width: 50,
+                                        height: 50,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Village",
+                                      style: TextStyle(color: Colors.black54),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.blue),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.asset(
+                                        "assets/a.png",
+                                        width: 50,
+                                        height: 50,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Apartment",
+                                      style: TextStyle(color: Colors.blue),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.blue),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.asset(
+                                        "assets/a.png",
+                                        width: 50,
+                                        height: 50,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Apartment",
+                                      style: TextStyle(color: Colors.blue),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 12,
                         ),
                         Row(
                           children: [
                             Container(
-                              padding: EdgeInsets.all(5),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.blue),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.asset(
-                                      "assets/a.png",
-                                      width: 50,
-                                      height: 50,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Apartment",
-                                    style: TextStyle(color: Colors.blue),
-                                  ),
-                                ],
+                              padding: EdgeInsets.only(left: 15, right: 10),
+                              child: Container(
+                                padding: EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.blue,
+                                        blurRadius: 1.0,
+                                        offset: Offset(0, 1),
+                                      )
+                                    ],
+                                    border: Border.all(color: Colors.white10),
+                                    shape: BoxShape.circle,
+                                    color: Colors.white),
+                                child: Icon(
+                                  Icons.attach_money_rounded,
+                                  color: Colors.blue,
+                                ),
                               ),
-                            )
+                            ),
+                            Text(
+                              "Price Range",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ],
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          padding: EdgeInsets.all(10),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black38),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                padding: EdgeInsets.all(5),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "\<500",
+                                      style: TextStyle(
+                                          color: Colors.black54, fontSize: 18),
+                                    ),
+                                    CircularCheckBox(
+                                        value: this.selected,
+                                        checkColor: Colors.white,
+                                        activeColor: Colors.blue,
+                                        inactiveColor: Colors.black54,
+                                        disabledColor: Colors.grey,
+                                        onChanged: (val) => this.setState(() {
+                                              this.selected = !this.selected;
+                                            })),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black38),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                padding: EdgeInsets.all(5),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "\<1000",
+                                      style: TextStyle(
+                                          color: Colors.black54, fontSize: 18),
+                                    ),
+                                    CircularCheckBox(
+                                        value: this.selected1,
+                                        checkColor: Colors.white,
+                                        activeColor: Colors.blue,
+                                        inactiveColor: Colors.black54,
+                                        disabledColor: Colors.grey,
+                                        onChanged: (val) => this.setState(() {
+                                              this.selected1 = !this.selected1;
+                                            })),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black38),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                padding: EdgeInsets.all(5),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "\<1500",
+                                      style: TextStyle(
+                                          color: Colors.black54, fontSize: 18),
+                                    ),
+                                    CircularCheckBox(
+                                        value: this.selected2,
+                                        checkColor: Colors.white,
+                                        activeColor: Colors.blue,
+                                        inactiveColor: Colors.black54,
+                                        disabledColor: Colors.grey,
+                                        onChanged: (val) => this.setState(() {
+                                              this.selected2 = !this.selected2;
+                                            })),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black38),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                padding: EdgeInsets.all(5),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "\<2000",
+                                      style: TextStyle(
+                                          color: Colors.black54, fontSize: 18),
+                                    ),
+                                    CircularCheckBox(
+                                        value: this.selected3,
+                                        checkColor: Colors.white,
+                                        activeColor: Colors.blue,
+                                        inactiveColor: Colors.black12,
+                                        disabledColor: Colors.grey,
+                                        onChanged: (val) => this.setState(() {
+                                              this.selected3 = !this.selected3;
+                                            })),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         )
                       ],
                     ),
