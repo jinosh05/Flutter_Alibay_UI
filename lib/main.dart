@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:material_segmented_control/material_segmented_control.dart';
-import 'package:circular_check_box/circular_check_box.dart';
 
 void main(List<String> args) {
   runApp(MaterialApp(
@@ -11,19 +10,20 @@ void main(List<String> args) {
 }
 
 class Myapp extends StatefulWidget {
-  Myapp({Key key}) : super(key: key);
+  Myapp({Key? key}) : super(key: key);
 
   @override
   _MyappState createState() => _MyappState();
 }
 
 class _MyappState extends State<Myapp> {
+  late PersistentBottomSheetController _controller;
   int _currentSelection = 0;
   int _currentSelection1 = 0;
+  int _currentValue = 0;
+
   bool selected = false;
-  bool selected1 = true;
-  bool selected2 = false;
-  bool selected3 = false;
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -38,9 +38,12 @@ class _MyappState extends State<Myapp> {
       "Around 20 KM",
     ];
     // ignore: unused_local_variable
-    String _selectedLocation;
+    String? _selectedLocation;
+
+    final _scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Color(0xfff4f4f4),
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -62,15 +65,11 @@ class _MyappState extends State<Myapp> {
               color: Colors.black38,
             ),
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
-                  duration: Duration(minutes: 2),
-                  backgroundColor: Colors.white,
-                  padding: EdgeInsets.all(0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  content: Container(
+              _controller = _scaffoldKey.currentState!.showBottomSheet(
+                (context) {
+                  return Container(
                     width: width,
-                    height: height * 0.75,
+                    height: height * 0.65,
                     padding: EdgeInsets.all(10),
                     child: Column(
                       children: [
@@ -92,13 +91,17 @@ class _MyappState extends State<Myapp> {
                                   color: Colors.black),
                             ),
                             Spacer(),
-                            Text(
-                              "Apply",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  color: Colors.blue),
-                            )
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                  "Apply",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      color: Colors.blue),
+                                ))
                           ],
                         ),
                         Divider(),
@@ -111,7 +114,7 @@ class _MyappState extends State<Myapp> {
                             selectedColor: Colors.blue,
                             unselectedColor: Colors.white,
                             borderRadius: 10.0,
-                            onSegmentChosen: (index) {
+                            onSegmentChosen: (dynamic index) {
                               setState(() {
                                 _currentSelection1 = index;
                               });
@@ -148,8 +151,8 @@ class _MyappState extends State<Myapp> {
                                     "          Select One           ",
                                     style: TextStyle(fontSize: 20),
                                   ),
-                                  onChanged: (newValue) {
-                                    setState(() {
+                                  onChanged: (dynamic newValue) {
+                                    _controller.setState!(() {
                                       _selectedLocation = newValue;
                                     });
                                   },
@@ -209,6 +212,7 @@ class _MyappState extends State<Myapp> {
                                 child: Column(
                                   children: [
                                     Container(
+                                      clipBehavior: Clip.hardEdge,
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.blue),
                                         shape: BoxShape.circle,
@@ -233,6 +237,7 @@ class _MyappState extends State<Myapp> {
                                     Container(
                                       width: 50,
                                       height: 50,
+                                      clipBehavior: Clip.hardEdge,
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.blue),
                                         shape: BoxShape.circle,
@@ -252,6 +257,7 @@ class _MyappState extends State<Myapp> {
                                 child: Column(
                                   children: [
                                     Container(
+                                      clipBehavior: Clip.hardEdge,
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.blue),
                                         shape: BoxShape.circle,
@@ -275,6 +281,7 @@ class _MyappState extends State<Myapp> {
                                 child: Column(
                                   children: [
                                     Container(
+                                      clipBehavior: Clip.hardEdge,
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.blue),
                                         shape: BoxShape.circle,
@@ -283,6 +290,7 @@ class _MyappState extends State<Myapp> {
                                         "assets/5.png",
                                         width: 50,
                                         height: 50,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                     Text(
@@ -297,6 +305,7 @@ class _MyappState extends State<Myapp> {
                                 child: Column(
                                   children: [
                                     Container(
+                                      clipBehavior: Clip.hardEdge,
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.blue),
                                         shape: BoxShape.circle,
@@ -319,6 +328,7 @@ class _MyappState extends State<Myapp> {
                                 child: Column(
                                   children: [
                                     Container(
+                                      clipBehavior: Clip.hardEdge,
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.blue),
                                         shape: BoxShape.circle,
@@ -392,19 +402,29 @@ class _MyappState extends State<Myapp> {
                                 child: Row(
                                   children: [
                                     Text(
-                                      "\<500",
+                                      "\<500 ",
                                       style: TextStyle(
                                           color: Colors.black54, fontSize: 18),
                                     ),
-                                    CircularCheckBox(
-                                        value: this.selected,
-                                        checkColor: Colors.white,
-                                        activeColor: Colors.blue,
-                                        inactiveColor: Colors.black54,
-                                        disabledColor: Colors.grey,
-                                        onChanged: (val) => this.setState(() {
-                                              this.selected = !this.selected;
-                                            })),
+
+                                    Radio(
+                                        value: 0,
+                                        groupValue: _currentValue,
+                                        activeColor: Colors.purple,
+                                        onChanged: (value) {
+                                          _controller.setState!(() {
+                                            _currentValue = value as int;
+                                          });
+                                        }),
+                                    // CircularCheckBox(
+                                    //     value: this.selected,
+                                    //     checkColor: Colors.white,
+                                    //     activeColor: Colors.blue,
+                                    //     inactiveColor: Colors.black54,
+                                    //     disabledColor: Colors.grey,
+                                    //     onChanged: (val) => this.setState(() {
+                                    //           this.selected = !this.selected;
+                                    //         })),
                                   ],
                                 ),
                               ),
@@ -425,15 +445,15 @@ class _MyappState extends State<Myapp> {
                                       style: TextStyle(
                                           color: Colors.black54, fontSize: 18),
                                     ),
-                                    CircularCheckBox(
-                                        value: this.selected1,
-                                        checkColor: Colors.white,
-                                        activeColor: Colors.blue,
-                                        inactiveColor: Colors.black54,
-                                        disabledColor: Colors.grey,
-                                        onChanged: (val) => this.setState(() {
-                                              this.selected1 = !this.selected1;
-                                            })),
+                                    Radio(
+                                        value: 1,
+                                        groupValue: _currentValue,
+                                        activeColor: Colors.purple,
+                                        onChanged: (value) {
+                                          _controller.setState!(() {
+                                            _currentValue = value as int;
+                                          });
+                                        }),
                                   ],
                                 ),
                               ),
@@ -454,15 +474,15 @@ class _MyappState extends State<Myapp> {
                                       style: TextStyle(
                                           color: Colors.black54, fontSize: 18),
                                     ),
-                                    CircularCheckBox(
-                                        value: this.selected2,
-                                        checkColor: Colors.white,
-                                        activeColor: Colors.blue,
-                                        inactiveColor: Colors.black54,
-                                        disabledColor: Colors.grey,
-                                        onChanged: (val) => this.setState(() {
-                                              this.selected2 = !this.selected2;
-                                            })),
+                                    Radio(
+                                        value: 2,
+                                        groupValue: _currentValue,
+                                        activeColor: Colors.purple,
+                                        onChanged: (value) {
+                                          _controller.setState!(() {
+                                            _currentValue = value as int;
+                                          });
+                                        }),
                                   ],
                                 ),
                               ),
@@ -483,15 +503,16 @@ class _MyappState extends State<Myapp> {
                                       style: TextStyle(
                                           color: Colors.black54, fontSize: 18),
                                     ),
-                                    CircularCheckBox(
-                                        value: this.selected3,
-                                        checkColor: Colors.white,
-                                        activeColor: Colors.blue,
-                                        inactiveColor: Colors.black12,
-                                        disabledColor: Colors.grey,
-                                        onChanged: (val) => this.setState(() {
-                                              this.selected3 = !this.selected3;
-                                            })),
+                                    Radio(
+                                        value: 3,
+                                        groupValue: _currentValue,
+                                        activeColor: Colors.purple,
+                                        onChanged: (value) {
+                                          _controller.setState!(() {
+                                            _currentValue = value as int;
+                                          });
+                                          _controller.setState!(() {});
+                                        }),
                                   ],
                                 ),
                               )
@@ -500,7 +521,11 @@ class _MyappState extends State<Myapp> {
                         )
                       ],
                     ),
-                  )));
+                  );
+                },
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+              );
             },
           )
         ],
@@ -545,7 +570,7 @@ class _MyappState extends State<Myapp> {
               selectedColor: Colors.blue,
               unselectedColor: Colors.white,
               borderRadius: 10.0,
-              onSegmentChosen: (index) {
+              onSegmentChosen: (dynamic index) {
                 setState(() {
                   _currentSelection = index;
                 });
